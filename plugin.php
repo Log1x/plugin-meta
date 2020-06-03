@@ -68,6 +68,13 @@ add_action('plugins_loaded', new class
         add_filter('bsr_capability', function () {
             return 'manage_options';
         });
+        
+        /**
+         * Make WP User Profiles stop being naughty.
+         *
+         * @return void
+         */
+        remove_filter('wp_user_profiles_show_other_section', 'wp_user_profiles_has_profile_actions');
 
         /**
          * Remove metaboxes created by Related Posts and Yoast.
