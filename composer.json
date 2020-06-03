@@ -1,0 +1,53 @@
+{
+  "name": "log1x/plugin-meta",
+  "type": "wordpress-muplugin",
+  "license": "MIT",
+  "description": "A simple meta package for my commonly used WordPress plugins",
+  "homepage": "https://github.com/log1x/plugin-meta",
+  "authors": [
+    {
+      "name": "Brandon Nifong",
+      "email": "brandon@tendency.me",
+      "homepage": "https://github.com/log1x"
+    }
+  ],
+  "keywords": ["wordpress", "bedrock", "composer"],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+    }
+  ],
+  "require": {
+    "php": ">=7.2.5",
+    "composer/composer": "^1.10",
+    "composer/installers": "^1.7",
+    "log1x/modern-acf-options": "dev-master",
+    "log1x/modern-login": "dev-master",
+    "stuttter/wp-user-activity": "dev-master",
+    "stuttter/wp-user-avatars": "dev-master",
+    "stuttter/wp-user-profiles": "dev-master",
+    "wpackagist-plugin/acf-extended": "dev-trunk",
+    "wpackagist-plugin/better-search-replace": "dev-trunk",
+    "wpackagist-plugin/block-options": "dev-trunk",
+    "wpackagist-plugin/duplicate-page": "dev-trunk",
+    "wpackagist-plugin/enable-media-replace": "dev-trunk",
+    "wpackagist-plugin/gutenberg": "dev-trunk",
+    "wpackagist-plugin/post-type-switcher": "dev-trunk"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "installer-paths": {
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+    }
+  }
+}
