@@ -21,20 +21,16 @@
   ],
   "require": {
     "php": ">=7.2.5",
-    "composer/composer": "^1.10",
     "composer/installers": "^1.7",
     "log1x/modern-acf-options": "dev-master",
     "log1x/modern-login": "dev-master",
     "stuttter/wp-user-activity": "dev-master",
-    "stuttter/wp-user-avatars": "dev-master",
-    "stuttter/wp-user-profiles": "dev-master",
     "wpackagist-plugin/acf-extended": "dev-trunk",
     "wpackagist-plugin/better-search-replace": "dev-trunk",
-    "wpackagist-plugin/block-options": "dev-trunk",
     "wpackagist-plugin/duplicate-page": "dev-trunk",
     "wpackagist-plugin/enable-media-replace": "dev-trunk",
-    "wpackagist-plugin/gutenberg": "dev-trunk",
-    "wpackagist-plugin/post-type-switcher": "dev-trunk"
+    "wpackagist-plugin/post-type-switcher": "dev-trunk",
+    "wpackagist-plugin/simple-local-avatars": "dev-trunk"
   },
   "config": {
     "optimize-autoloader": true,

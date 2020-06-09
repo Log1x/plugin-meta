@@ -35,7 +35,7 @@ add_action('plugins_loaded', new class
             'acf/settings/acfe/modules/options',
             'acf/settings/acfe/dev'
         ] as $filter) {
-            add_filter($filter, '__return_false', 100);
+            add_filter($filter, '__return_false');
         };
 
         /**
@@ -44,7 +44,7 @@ add_action('plugins_loaded', new class
          * @return bool
          */
         foreach(['blockopts_welcome_cap', 'coblocks_getting_started_screen_capability'] as $filter) {
-            add_filter($filter, '__return_false', 100);
+            add_filter($filter, '__return_false');
         }
 
         /**
@@ -70,32 +70,39 @@ add_action('plugins_loaded', new class
         });
 
         /**
-         * Remove metaboxes created by Related Posts and Yoast.
+         * Remove metaboxes created by Related Posts for WordPress.
          *
          * @return void
          */
-        add_action('do_meta_boxes', function () {
+        add_filter('do_meta_boxes', function () {
             remove_meta_box('rp4wp_metabox_related_posts', get_post_types(), 'normal');
             remove_meta_box('rp4wp_metabox_exclude_post', get_post_types(), 'side');
-            remove_meta_box('yoast_internal_linking', get_post_types(), 'side');
         });
 
         /**
-         * Lower The SEO Framework's Metabox Priority
+         * Disable unwanted default functionality of Related Posts for WordPress.
+         *
+         * @return void
+         */
+        add_filter('rp4wp_append_content', '__return_false');
+        add_filter('rp4wp_disable_css', '__return_true');
+
+        /**
+         * Change the WordPress login header to the blog name
          *
          * @return string
          */
-        add_filter('the_seo_framework_metabox_priority', function () {
-            return 'low';
+        add_filter('login_headertext', function () {
+            return get_bloginfo('name');
         });
 
         /**
-         * Lower WordPress SEO's Metabox Priority
+         * Change the WordPress login header URL to the home URL
          *
          * @return string
          */
-        add_filter('wpseo_metabox_prio', function () {
-            return 'low';
+        add_filter('login_headerurl', function () {
+            return get_home_url();
         });
 
         /**
