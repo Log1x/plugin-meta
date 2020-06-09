@@ -56,8 +56,21 @@ add_action('plugins_loaded', new class
         add_filter('wp_user_activity_get_post_type_args', function ($default) {
             return array_merge($default, [
                 'labels' => ['all_items' => 'Activity'] + $default['labels'],
-                'show_in_menu' => 'options-general.php'
+                'show_in_menu' => 'users.php'
             ]);
+        });
+
+        /**
+         * Remove the UpdraftPlus admin bar item.
+         *
+         * @return void
+         */
+        add_filter('init', function () {
+            if (defined('UPDRAFTPLUS_ADMINBAR_DISABLE')) {
+                return;
+            }
+
+            define('UPDRAFTPLUS_ADMINBAR_DISABLE', true);
         });
 
         /**
@@ -68,7 +81,7 @@ add_action('plugins_loaded', new class
         add_filter('bsr_capability', function () {
             return 'manage_options';
         });
-        
+
         /**
          * Make WP User Profiles stop being naughty.
          *
