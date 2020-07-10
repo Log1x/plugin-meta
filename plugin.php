@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.0.5
+ * Version:     1.0.6
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -33,10 +33,15 @@ add_action('plugins_loaded', new class
             'acf/settings/acfe/modules/author',
             'acf/settings/acfe/modules/taxonomies',
             'acf/settings/acfe/modules/options',
+            'acf/settings/acfe/modules/single_meta',
             'acf/settings/acfe/dev'
-        ] as $filter) {
-            add_filter($filter, '__return_false');
+        ] as $hook) {
+            add_filter($hook, '__return_false');
         };
+
+        add_filter('init', function () {
+            unregister_taxonomy('acf-field-group-category');
+        }, 100);
 
         /**
          * Remove the EditorsKit and CoBlocks getting started screens.
@@ -81,13 +86,6 @@ add_action('plugins_loaded', new class
         add_filter('bsr_capability', function () {
             return 'manage_options';
         });
-
-        /**
-         * Make WP User Profiles stop being naughty.
-         *
-         * @return void
-         */
-        remove_filter('wp_user_profiles_show_other_section', 'wp_user_profiles_has_profile_actions');
 
         /**
          * Remove metaboxes created by Related Posts for WordPress.

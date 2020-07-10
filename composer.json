@@ -28,7 +28,8 @@
     "wpackagist-plugin/better-search-replace": "dev-trunk",
     "wpackagist-plugin/duplicate-page": "dev-trunk",
     "wpackagist-plugin/enable-media-replace": "dev-trunk",
-    "wpackagist-plugin/post-type-switcher": "dev-trunk"
+    "wpackagist-plugin/post-type-switcher": "dev-trunk",
+    "wpackagist-plugin/safe-svg": "dev-trunk"
   },
   "config": {
     "optimize-autoloader": true,
