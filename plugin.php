@@ -34,7 +34,6 @@ add_action('plugins_loaded', new class
             'acf/settings/acfe/modules/taxonomies',
             'acf/settings/acfe/modules/options',
             'acf/settings/acfe/modules/single_meta',
-            'acf/settings/acfe/dev'
         ] as $hook) {
             add_filter($hook, '__return_false');
         };
@@ -44,6 +43,22 @@ add_action('plugins_loaded', new class
         }, 100);
 
         /**
+         * Enable good ACF Extended modules.
+         *
+         * @return bool
+         */
+        foreach([
+            'acf/settings/acfe/modules/ui',
+            'acf/settings/acfe/modules/multilang',
+        ] as $hook) {
+            add_filter($hook, '__return_true');
+        };
+
+        if (defined('WP_ENV') && WP_ENV !== 'production') {
+            add_filter('acf/settings/acfe/dev', '__return_true');
+        }
+
+        /**
          * Remove the EditorsKit and CoBlocks getting started screens.
          *
          * @return bool
@@ -51,19 +66,6 @@ add_action('plugins_loaded', new class
         foreach(['blockopts_welcome_cap', 'coblocks_getting_started_screen_capability'] as $filter) {
             add_filter($filter, '__return_false');
         }
-
-        /**
-         * Move User Activity to Settings -> Activity
-         *
-         * @param  array $default
-         * @return array
-         */
-        add_filter('wp_user_activity_get_post_type_args', function ($default) {
-            return array_merge($default, [
-                'labels' => ['all_items' => 'Activity'] + $default['labels'],
-                'show_in_menu' => 'users.php'
-            ]);
-        });
 
         /**
          * Remove the UpdraftPlus admin bar item.
@@ -104,6 +106,16 @@ add_action('plugins_loaded', new class
          */
         add_filter('rp4wp_append_content', '__return_false');
         add_filter('rp4wp_disable_css', '__return_true');
+
+        /**
+         * Remove metaboxes created by Pretty Links.
+         *
+         * @return void
+         */
+        add_filter('wp_dashboard_setup', function () {
+            remove_meta_box('prli_dashboard_widget', 'dashboard', 'normal');
+            remove_meta_box('prli_dashboard_widget', 'dashboard', 'side');
+        });
 
         /**
          * Change the WordPress login header to the blog name
