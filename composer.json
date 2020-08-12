@@ -25,7 +25,6 @@
     "log1x/modern-acf-options": "dev-master",
     "log1x/modern-login": "dev-master",
     "wpackagist-plugin/acf-extended": "dev-trunk",
-    "wpackagist-plugin/better-search-replace": "dev-trunk",
     "wpackagist-plugin/duplicate-page": "dev-trunk",
     "wpackagist-plugin/enable-media-replace": "dev-trunk",
     "wpackagist-plugin/post-type-switcher": "dev-trunk",
