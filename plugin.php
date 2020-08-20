@@ -54,10 +54,6 @@ add_action('plugins_loaded', new class
             add_filter($hook, '__return_true');
         };
 
-        if (defined('WP_ENV') && WP_ENV !== 'production') {
-            add_filter('acf/settings/acfe/dev', '__return_true');
-        }
-
         /**
          * Remove the EditorsKit and CoBlocks getting started screens.
          *
@@ -142,4 +138,13 @@ add_action('plugins_loaded', new class
          */
         remove_filter('admin_menu', 'gutenberg_menu');
     }
+
+    /**
+     * Remove the WP Rocket option metabox.
+     *
+     * @return void
+     */
+    add_action('admin_init', function () {
+        remove_action('add_meta_boxes', 'rocket_cache_options_meta_boxes');
+    });
 });
