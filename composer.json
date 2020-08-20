@@ -35,6 +35,7 @@
     "wpackagist-plugin/enable-media-replace": "dev-trunk",
     "wpackagist-plugin/post-type-switcher": "dev-trunk",
     "wpackagist-plugin/safe-svg": "dev-trunk",
+    "wpackagist-plugin/simple-history": "dev-trunk",
     "wpackagist-plugin/two-factor": "dev-trunk"
   },
   "config": {
