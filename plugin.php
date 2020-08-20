@@ -137,14 +137,14 @@ add_action('plugins_loaded', new class
          * @return void
          */
         remove_filter('admin_menu', 'gutenberg_menu');
-    }
 
-    /**
-     * Remove the WP Rocket option metabox.
-     *
-     * @return void
-     */
-    add_action('admin_init', function () {
-        remove_action('add_meta_boxes', 'rocket_cache_options_meta_boxes');
-    });
+        /**
+         * Remove the WP Rocket option metabox.
+         *
+         * @return void
+         */
+        add_filter('admin_init', function () {
+            remove_filter('add_meta_boxes', 'rocket_cache_options_meta_boxes');
+        });
+    }
 });
