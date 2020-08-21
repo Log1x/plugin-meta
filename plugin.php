@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.0.9
+ * Version:     1.1.0
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -60,7 +60,7 @@ add_action('plugins_loaded', new class
          * @return bool
          */
         foreach(['blockopts_welcome_cap', 'coblocks_getting_started_screen_capability'] as $filter) {
-            add_filter($filter, '__return_false');
+            add_filter($hook, '__return_false');
         }
 
         /**
@@ -146,5 +146,34 @@ add_action('plugins_loaded', new class
         add_filter('admin_init', function () {
             remove_filter('add_meta_boxes', 'rocket_cache_options_meta_boxes');
         });
+
+        /**
+         * Deregister useless plugin widgets.
+         *
+         * @return void
+         */
+        add_filter('widgets_init', function () {
+            foreach([
+                'Su_Widget',
+                'RP4WP_Related_Posts_Widget'
+            ] as $widget) {
+                unregister_widget($widget);
+            }
+        });
+
+        /**
+         * Remove failed login logging from Simple History.
+         *
+         * @param  bool   $logged
+         * @param  string $slug
+         * @return bool
+         */
+        add_filter('simple_history/simple_logger/log_message_key', function ($logged, $slug, $key, $level, $context) {
+            if (Str::is($slug, 'SimpleUserLogger') && Str::contains($key, ['user_login_failed', 'user_unknown_login_failed'])) {
+                return false;
+            }
+
+            return $logged;
+        }, 10, 5);
     }
 });
