@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.1.0
+ * Version:     1.1.1
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
