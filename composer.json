@@ -31,12 +31,12 @@
     "composer/installers": "^1.7",
     "log1x/modern-acf-options": "dev-master",
     "log1x/modern-login": "dev-master",
-    "wpackagist-plugin/duplicate-page": "dev-trunk",
-    "wpackagist-plugin/enable-media-replace": "dev-trunk",
-    "wpackagist-plugin/post-type-switcher": "dev-trunk",
-    "wpackagist-plugin/safe-svg": "dev-trunk",
-    "wpackagist-plugin/simple-history": "dev-trunk",
-    "wpackagist-plugin/two-factor": "dev-trunk"
+    "wpackagist-plugin/duplicate-page": "^4.3",
+    "wpackagist-plugin/enable-media-replace": "^3.4",
+    "wpackagist-plugin/post-type-switcher": "^3.2",
+    "wpackagist-plugin/safe-svg": "^1.9",
+    "wpackagist-plugin/simple-history": "^2.37",
+    "wpackagist-plugin/two-factor": "^0.7.0"
   },
   "config": {
     "optimize-autoloader": true,
