@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.1.2
+ * Version:     1.1.3
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -166,14 +166,35 @@ add_action('plugins_loaded', new class
          *
          * @param  bool   $logged
          * @param  string $slug
+         * @param  string $key
+         * @param  int    $level
+         * @param  string $context
          * @return bool
          */
         add_filter('simple_history/simple_logger/log_message_key', function ($logged, $slug, $key, $level, $context) {
-            if (Str::is($slug, 'SimpleUserLogger') && Str::contains($key, ['user_login_failed', 'user_unknown_login_failed'])) {
+            if ($this->contains($slug, 'SimpleUserLogger') && $this->contains($key, ['user_login_failed', 'user_unknown_login_failed'])) {
                 return false;
             }
 
             return $logged;
         }, 10, 5);
+    }
+
+    /**
+     * Determine if a given string contains a given substring.
+     *
+     * @param  string  $haystack
+     * @param  string|string[]  $needles
+     * @return bool
+     */
+    public function contains($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ($needle !== '' && mb_strpos($haystack, $needle) !== false) {
+                return true;
+            }
+        }
+
+        return false;
     }
 });
