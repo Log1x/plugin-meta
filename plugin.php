@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.1.3
+ * Version:     1.1.4
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -178,6 +178,73 @@ add_action('plugins_loaded', new class
 
             return $logged;
         }, 10, 5);
+
+        /**
+         * Remove the post actions created by Page Generator Pro.
+         *
+         * @param  array $actions
+         * @return array
+         */
+        foreach([
+            'post_row_actions',
+            'page_row_actions',
+        ] as $hook) {
+            add_filter($hook, function ($actions) {
+                if (! empty($actions['page_generator_pro_import'])) {
+                    unset($actions['page_generator_pro_import']);
+                }
+
+                return $actions;
+            }, 100);
+        }
+
+        /**
+         * Remove the blog snippet schema added to the homepage by RankMath.
+         *
+         * @param  array $data
+         * @return array
+         */
+        add_filter('rank_math/json_ld', function ($data) {
+            if (is_home() && ! empty($data['Blog'])) {
+                unset($data['Blog']);
+            }
+
+            return $data;
+        });
+
+        /**
+         * Disable primary category terms.
+         *
+         * @return bool
+         */
+        add_filter('rank_math/primary_term', '__return_true');
+
+        /**
+         * Disable RankMath's whitelabeling.
+         *
+         * @return bool
+         */
+        foreach([
+            'rank_math/whitelabel',
+            'rank_math/link/remove_class',
+            'rank_math/sitemap/remove_credit',
+            'rank_math/frontend/remove_credit_notice',
+        ] as $hook) {
+            add_filter($hook, '__return_true');
+        }
+
+        /**
+         * Register the defined Google Maps API key with ACF.
+         *
+         * @return void
+         */
+        add_filter('acf/init', function () {
+            if (! defined('GOOGLE_MAPS_API_KEY') || ! function_exists('acf_update_setting')) {
+                return;
+            }
+
+            acf_update_setting('google_api_key', env('GOOGLE_MAPS_API_KEY'));
+        });
     }
 
     /**
