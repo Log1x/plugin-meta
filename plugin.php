@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.1.4
+ * Version:     1.1.5
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -243,7 +243,7 @@ add_action('plugins_loaded', new class
                 return;
             }
 
-            acf_update_setting('google_api_key', env('GOOGLE_MAPS_API_KEY'));
+            acf_update_setting('google_api_key', GOOGLE_MAPS_API_KEY);
         });
     }
 
