@@ -32,7 +32,7 @@
     "log1x/modern-acf-options": "dev-master",
     "log1x/modern-login": "dev-master",
     "wpackagist-plugin/duplicate-page": "^4.3",
-    "wpackagist-plugin/enable-media-replace": "^3.4",
+    "wpackagist-plugin/enable-media-replace": "^3.5",
     "wpackagist-plugin/post-type-switcher": "^3.2",
     "wpackagist-plugin/safe-svg": "^1.9",
     "wpackagist-plugin/simple-history": "^2.37",
