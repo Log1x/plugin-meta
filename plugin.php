@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.1.7
+ * Version:     1.1.8
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -217,7 +217,7 @@ add_action('plugins_loaded', new class
          *
          * @return bool
          */
-        add_filter('rank_math/primary_term', '__return_true');
+        add_filter('rank_math/admin/disable_primary_term', '__return_true');
 
         /**
          * Disable RankMath's whitelabeling.
