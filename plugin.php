@@ -130,6 +130,15 @@ add_action('plugins_loaded', new class
         add_filter('login_headerurl', function () {
             return get_home_url();
         });
+        
+        /**
+         * Process shortcodes inside of titles.
+         *
+         * @return string
+         */
+        add_filter('the_title', 'do_shortcode');
+        add_filter('wpseo_title', 'do_shortcode');
+
 
         /**
          * Remove Gutenberg's admin menu item.
