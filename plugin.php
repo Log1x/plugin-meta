@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.1.8
+ * Version:     1.1.9
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -130,7 +130,7 @@ add_action('plugins_loaded', new class
         add_filter('login_headerurl', function () {
             return get_home_url();
         });
-        
+
         /**
          * Process shortcodes inside of titles.
          *
@@ -138,7 +138,6 @@ add_action('plugins_loaded', new class
          */
         add_filter('the_title', 'do_shortcode');
         add_filter('wpseo_title', 'do_shortcode');
-
 
         /**
          * Remove Gutenberg's admin menu item.
