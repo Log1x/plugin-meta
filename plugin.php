@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.1.9
+ * Version:     1.2.0
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -132,19 +132,44 @@ add_action('plugins_loaded', new class
         });
 
         /**
-         * Process shortcodes inside of titles.
+         * Process shortcodes inside of titles, descriptions, and open graph data.
          *
          * @return string
          */
-        add_filter('the_title', 'do_shortcode');
-        add_filter('wpseo_title', 'do_shortcode');
+        foreach([
+            'the_title',
+            'get_the_title',
+            'wpseo_title',
+            'wpseo_metadesc',
+            'wpseo_opengraph_title',
+            'wpseo_opengraph_desc',
+            'wpseo_opengraph_site_name',
+            'wpseo_twitter_title',
+            'wpseo_twitter_description'
+        ] as $hook) {
+            add_filter($hook, 'do_shortcode');
+        }
 
         /**
-         * Remove Gutenberg's admin menu item.
+         * Process shortcodes inside of WordPress SEO's schema.
          *
-         * @return void
+         * @param  string[] $data
+         * @return string[]
          */
-        remove_filter('admin_menu', 'gutenberg_menu');
+        foreach(['wpseo_schema_webpage', 'wpseo_schema_article'] as $hook) {
+            add_filter($hook, function ($data) {
+                return array_map(function ($item) {
+                    return is_string($item) ? do_shortcode($item) : $item;
+                }, $data);
+            });
+        }
+
+        /**
+         * Hide version on WordPress SEO's HTML output.
+         *
+         * @return bool
+         */
+        add_filter('wpseo_hide_version', '__return_true');
 
         /**
          * Remove the WP Rocket option metabox.
