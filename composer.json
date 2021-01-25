@@ -33,7 +33,7 @@
     "log1x/modern-login": "dev-master",
     "wpackagist-plugin/duplicate-page": "^4.3",
     "wpackagist-plugin/enable-media-replace": "^3.5",
-    "wpackagist-plugin/find-my-blocks": "^3.0",
+    "wpackagist-plugin/find-my-blocks": "^3.1",
     "wpackagist-plugin/post-type-switcher": "^3.2",
     "wpackagist-plugin/safe-svg": "^1.9",
     "wpackagist-plugin/simple-history": "^2.38",

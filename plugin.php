@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.2.0
+ * Version:     1.2.1
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -179,6 +179,20 @@ add_action('plugins_loaded', new class
         add_filter('admin_init', function () {
             remove_filter('add_meta_boxes', 'rocket_cache_options_meta_boxes');
         });
+
+        /**
+         * Remove Find My Blocks' reusable blocks admin menu hook.
+         *
+         * @return void
+         */
+        remove_filter('admin_menu', 'find_my_blocks_add_reusable_to_admin_menu');
+
+        /**
+         * Disable the widget block editor.
+         *
+         * @return bool
+         */
+        add_filter('gutenberg_use_widgets_block_editor', '__return_false');
 
         /**
          * Deregister useless plugin widgets.
