@@ -31,16 +31,13 @@ add_action('plugins_loaded', new class
             'acf/settings/acfe/modules/dynamic_options_pages',
             'acf/settings/acfe/modules/dynamic_block_types',
             'acf/settings/acfe/modules/author',
+            'acf/settings/acfe/modules/categories',
             'acf/settings/acfe/modules/taxonomies',
             'acf/settings/acfe/modules/options',
             'acf/settings/acfe/modules/single_meta',
         ] as $hook) {
             add_filter($hook, '__return_false');
         };
-
-        add_filter('init', function () {
-            unregister_taxonomy('acf-field-group-category');
-        }, 100);
 
         /**
          * Enable good ACF Extended modules.
