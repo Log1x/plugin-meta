@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.2.3
+ * Version:     1.2.4
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -241,27 +241,6 @@ add_action('plugins_loaded', new class
                 return $actions;
             }, 100);
         }
-
-        /**
-         * Remove the blog snippet schema added to the homepage by RankMath.
-         *
-         * @param  array $data
-         * @return array
-         */
-        add_filter('rank_math/json_ld', function ($data) {
-            if (is_home() && ! empty($data['Blog'])) {
-                unset($data['Blog']);
-            }
-
-            return $data;
-        });
-
-        /**
-         * Disable primary category terms.
-         *
-         * @return bool
-         */
-        add_filter('rank_math/admin/disable_primary_term', '__return_true');
 
         /**
          * Disable RankMath's whitelabeling.
