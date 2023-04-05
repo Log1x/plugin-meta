@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.2.7
+ * Version:     1.2.8
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -25,16 +25,15 @@ add_action('plugins_loaded', new class
          * @return boolean
          */
         foreach([
-            'acf/settings/acfe/modules/dynamic_post_types',
-            'acf/settings/acfe/modules/dynamic_taxonomies',
-            'acf/settings/acfe/modules/dynamic_forms',
-            'acf/settings/acfe/modules/dynamic_options_pages',
-            'acf/settings/acfe/modules/dynamic_block_types',
             'acf/settings/acfe/modules/author',
+            'acf/settings/acfe/modules/block_types',
             'acf/settings/acfe/modules/categories',
-            'acf/settings/acfe/modules/taxonomies',
+            'acf/settings/acfe/modules/forms',
+            'acf/settings/acfe/modules/options_pages',
             'acf/settings/acfe/modules/options',
-            'acf/settings/acfe/modules/single_meta',
+            'acf/settings/acfe/modules/performance',
+            'acf/settings/acfe/modules/post_types',
+            'acf/settings/acfe/modules/taxonomies',
         ] as $hook) {
             add_filter($hook, '__return_false');
         };
@@ -269,6 +268,13 @@ add_action('plugins_loaded', new class
             acf_update_setting('google_api_key', GOOGLE_MAPS_API_KEY);
         });
     }
+
+    /**
+     * Remove MonsterInsights scroll tracking.
+     *
+     * @return void
+     */
+    remove_action('wp_footer', 'monsterinsights_scroll_tracking_output_after_script', 11);
 
     /**
      * Determine if a given string contains a given substring.
