@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.2.8
+ * Version:     1.2.9
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -168,6 +168,13 @@ add_action('plugins_loaded', new class
         add_filter('wpseo_hide_version', '__return_true');
 
         /**
+         * Remove MonsterInsights scroll tracking.
+         *
+         * @return void
+         */
+        remove_action('wp_footer', 'monsterinsights_scroll_tracking_output_after_script', 11);
+
+        /**
          * Remove the WP Rocket option metabox.
          *
          * @return void
@@ -268,13 +275,6 @@ add_action('plugins_loaded', new class
             acf_update_setting('google_api_key', GOOGLE_MAPS_API_KEY);
         });
     }
-
-    /**
-     * Remove MonsterInsights scroll tracking.
-     *
-     * @return void
-     */
-    remove_action('wp_footer', 'monsterinsights_scroll_tracking_output_after_script', 11);
 
     /**
      * Determine if a given string contains a given substring.
