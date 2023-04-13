@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.2.9
+ * Version:     1.3.0
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -172,7 +172,9 @@ add_action('plugins_loaded', new class
          *
          * @return void
          */
-        remove_action('wp_footer', 'monsterinsights_scroll_tracking_output_after_script', 11);
+        add_filter('after_setup_theme', function () {
+            remove_action('wp_footer', 'monsterinsights_scroll_tracking_output_after_script', 11);
+        });
 
         /**
          * Remove the WP Rocket option metabox.
