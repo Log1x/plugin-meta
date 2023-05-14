@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.3.0
+ * Version:     1.3.1
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -89,6 +89,15 @@ add_action('plugins_loaded', new class
         add_filter('do_meta_boxes', function () {
             remove_meta_box('rp4wp_metabox_related_posts', get_post_types(), 'normal');
             remove_meta_box('rp4wp_metabox_exclude_post', get_post_types(), 'side');
+        });
+
+        /**
+         * Remove metaboxes created by Pretty Links.
+         *
+         * @return void
+         */
+        add_filter('do_meta_boxes', function () {
+            remove_meta_box('pretty-links-sidebar', get_post_types(), 'side');
         });
 
         /**
