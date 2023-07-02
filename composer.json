@@ -34,8 +34,8 @@
     "wpackagist-plugin/duplicate-page": "^4.3",
     "wpackagist-plugin/enable-media-replace": "^4.0",
     "wpackagist-plugin/post-type-switcher": "^3.2",
-    "wpackagist-plugin/safe-svg": "^2.0",
-    "wpackagist-plugin/simple-history": "^3.3",
+    "wpackagist-plugin/safe-svg": "2.0.3",
+    "wpackagist-plugin/simple-history": "^4.1",
     "wpackagist-plugin/two-factor": "^0.8.1",
     "wpackagist-plugin/user-switching": "^1.5"
   },
