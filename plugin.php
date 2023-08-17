@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.3.2
+ * Version:     1.3.3
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -99,6 +99,15 @@ add_action('plugins_loaded', new class
         add_filter('do_meta_boxes', function () {
             remove_meta_box('pretty-links-sidebar', get_post_types(), 'side');
         });
+
+        /**
+         * Remove editor styles added by Pretty Links.
+         *
+         * @return void
+         */
+        add_filter('admin_enqueue_scripts', function () {
+            wp_dequeue_script('pretty-link-richtext-format');
+        }, 100);
 
         /**
          * Disable unwanted default functionality of Related Posts for WordPress.
