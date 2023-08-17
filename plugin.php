@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.3.3
+ * Version:     1.3.4
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -267,6 +267,15 @@ add_action('plugins_loaded', new class
                 return $actions;
             }, 100);
         }
+
+        /**
+         * Remove the block editor formatting created by Page Generator Pro.
+         *
+         * @return void
+         */
+        add_filter('admin_enqueue_scripts', function () {
+            wp_dequeue_script('page-generator-pro-gutenberg-block-formatters');
+        }, 100);
 
         /**
          * Disable RankMath's whitelabeling.
