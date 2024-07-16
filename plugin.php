@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.3.5
+ * Version:     1.3.6
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -126,6 +126,23 @@ add_action('plugins_loaded', new class
             remove_meta_box('prli_dashboard_widget', 'dashboard', 'normal');
             remove_meta_box('prli_dashboard_widget', 'dashboard', 'side');
         });
+
+        /**
+         * Unregister the Safe SVG block.
+         *
+         * @return void
+         */
+        add_filter('init', function () {
+            if (! class_exists('SafeSvg\\safe_svg')) {
+                return;
+            }
+
+            try {
+                unregister_block_type('safe-svg/svg-icon');
+            } catch (\Exception $e) {
+                //
+            }
+        }, 100);
 
         /**
          * Change the WordPress login header to the blog name
