@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.3.7
+ * Version:     1.3.8
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -265,6 +265,13 @@ add_action('plugins_loaded', new class
 
             return $logged;
         }, 10, 5);
+
+        /**
+         * Modify the Simple History purge interval.
+         *
+         * @return int
+         */
+        add_filter('simple_history/db_purge_days_interval', fn () => 15);
 
         /**
          * Remove the post actions created by Page Generator Pro.
