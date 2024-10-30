@@ -4,7 +4,7 @@
  * Plugin Name: Plugin Meta
  * Plugin URI:  https://github.com/log1x/plugin-meta
  * Description: A simple meta package for my commonly used WordPress plugins
- * Version:     1.3.8
+ * Version:     1.3.9
  * Author:      Brandon Nifong
  * Author URI:  https://github.com/log1x
  * Licence:     MIT
@@ -19,6 +19,13 @@ add_action('plugins_loaded', new class
      */
     public function __invoke()
     {
+        /**
+         * Disable UpdraftPlus' top level menu.
+         */
+        if (! defined('UPDRAFTPLUS_DISABLE_TOP_LEVEL_MENU_ENTRY')) {
+            define('UPDRAFTPLUS_DISABLE_TOP_LEVEL_MENU_ENTRY', true);
+        }
+
         /**
          * Disable unnecessary ACF Extended modules.
          *
