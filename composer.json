@@ -36,7 +36,7 @@
     "wpackagist-plugin/post-type-switcher": "^3.2",
     "wpackagist-plugin/safe-svg": "^2.1",
     "wpackagist-plugin/simple-history": "^5.0",
-    "wpackagist-plugin/two-factor": "^0.9.1",
+    "wpackagist-plugin/two-factor": "^0.10.0",
     "wpackagist-plugin/user-switching": "^1.5"
   },
   "config": {
