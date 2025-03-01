@@ -281,6 +281,13 @@ add_action('plugins_loaded', new class
         add_filter('simple_history/db_purge_days_interval', fn () => 15);
 
         /**
+         * Move Simple History to the tools menu.
+         *
+         * @return string
+         */
+        add_filter('simple_history/admin_menu_location', fn () => 'inside_tools');
+
+        /**
          * Remove the post actions created by Page Generator Pro.
          *
          * @param  array $actions
